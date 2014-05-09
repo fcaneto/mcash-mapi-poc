@@ -1,0 +1,4 @@
+Django
+South
+gunicorn
+mcash-mapi-client

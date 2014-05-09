@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>The Random Shop</title>
+
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+
+</head>
+
+<body>
+
+<div>
+  <h1>Random Shop</h1>
+
+  <div>
+    <p>We deliver random (sometimes useless) things to your door, in 24 hours.</p>
+    <p>You never know what you are going to get.</p>
+
+    <p>Only 50 NOK each.</p>
+
+    <h2>Pay with MCash</h2>
+
+    -- qr-code goes here --
+
+  </div>
+
+  <div>
+    <h2>Cool! Waiting for your payment...</h2>
+  </div>
+
+  <div>
+    <h2>Thanks!</h2>
+
+    -- address should show here --
+
+    </div>
+</div>
+
+
+<script src="//mcashtestbed.appspot.com/sdk/v1/shortlink.js"/>
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+
+<script>
+  $(document).ready(function () {
+    mCASH.displayQRorButton();
+  });
+</script>
+
+</body>
+
+</html>
