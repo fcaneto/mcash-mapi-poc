@@ -6,7 +6,7 @@ from django.conf.urls import patterns, include, url
 
 urlpatterns = patterns('',
     url(r'^$', 'mcash_store.views.home', name='home'),
-    url(r'^buy/$', 'mcash_store.views.do_payment_request', name='do_payment_request'),
+    url(r'^pay/$', 'mcash_store.views.do_payment_request', name='do_payment_request'),
     url(r'^payment_response/$', 'mcash_store.views.payment_response', name='payment_response'),
     url(r'^payment_capture_response/$', 'mcash_store.views.payment_capture_response', name='payment_capture_response'),
 
