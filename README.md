@@ -1,6 +1,6 @@
 ## mCASH MAPI PoC app
 
-This is a simple app to evaluate mCASH usage within a e-commerce web app.
+This is a simple app to evaluate mCASH usage within an e-commerce web app.
 
 #### About this version:
 
@@ -57,7 +57,7 @@ MCASH_SHORTLINK_ID=< shortlink id generated in last step >
 $ ./run.sh
 ```
 
-[Play with the mCASH testbed.](http://mcashtestbed.appspot.com/testbed/merchant/iw1yhe/login/?token=A8_0ie3jUVq2TJ252W42L52DbSnZlWHWIsHkMjYWTdE)
+[Play with the mCASH testbed.](http://mcashtestbed.appspot.com/testbed/merchant/iw1yhe/)
 
 PS: Tested with QR simulated scanning through the testbed.
 Scanning the QR code on mobile has not been tested yet.
