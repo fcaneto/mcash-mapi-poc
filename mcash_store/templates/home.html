@@ -89,7 +89,7 @@
 
   $('#retry-donation-btn').click(function () {
     var btn = $(this);
-    btn.button('loading')
+    btn.button('Loading...');
     $.ajax({
       url: "/cart/",
       type: "POST"
