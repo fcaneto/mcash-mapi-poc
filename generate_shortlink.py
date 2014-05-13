@@ -20,7 +20,8 @@ if __name__ == "__main__":
                            'X-Testbed-Token': TESTBED_TOKEN
                        }, )
 
-    
+    callback_url = 'https://' + HOST_DOMAIN + '/pay/'
+    response = mcash.create_shortlink(callback_url)
 
     if response:
         print 'Shortlink created with id %s.' % response['id']
