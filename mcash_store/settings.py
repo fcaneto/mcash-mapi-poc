@@ -1,14 +1,15 @@
 import os
 
 # MCash configuration
-MERCHANT_ID = 'iw1yhe'
-MCASH_USER = 'thedude'
-MCASH_USER_SECRET = 'supersecret'
-TESTBED_TOKEN = 'A8_0ie3jUVq2TJ252W42L52DbSnZlWHWIsHkMjYWTdE'
+MCASH_MERCHANT_ID = os.getenv('MCASH_MERCHANT_ID')
+MCASH_USER = os.getenv('MCASH_USER')
+MCASH_USER_SECRET = os.getenv('MCASH_USER_SECRET')
+MCASH_TESTBED_TOKEN = os.getenv('MCASH_TESTBED_TOKEN')
+MCASH_SHORTLINK_ID = os.getenv('MCASH_SHORTLINK_ID')
 
-DEV = (os.environ.get('DEV', 'True')) == 'True'
-DEBUG = (os.environ.get('DEBUG', 'True')) == 'True'
-HOST_DOMAIN = (os.environ.get('HOST_DOMAIN', 'localhost:8000'))
+DEV = os.getenv('DEV', 'True') == 'True'
+DEBUG = os.getenv('DEBUG', 'True') == 'True'
+HOST_DOMAIN = os.getenv('HOST_DOMAIN', 'localhost:8000')
 
 # Django settings for mcash_store project.
 APP_DIR = os.path.abspath(os.path.dirname(__file__))

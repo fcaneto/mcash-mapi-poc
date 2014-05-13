@@ -4,11 +4,14 @@ from django.conf.urls import patterns, include, url
 # from django.contrib import admin
 # admin.autodiscover()
 
-urlpatterns = patterns('',
-    url(r'^$', 'mcash_store.views.home', name='home'),
-    url(r'^pay/$', 'mcash_store.views.do_payment_request', name='do_payment_request'),
-    url(r'^payment_response/$', 'mcash_store.views.payment_response', name='payment_response'),
-    url(r'^payment_capture_response/$', 'mcash_store.views.payment_capture_response', name='payment_capture_response'),
+urlpatterns = patterns('mcash_store.views',
+    url(r'^$', 'home', name='home'),
+    url(r'^pay/$', 'do_payment_request', name='do_payment_request'),
+    url(r'^payment_response/$', 'payment_response', name='payment_response'),
+    url(r'^payment_capture_response/$', 'payment_capture_response', name='payment_capture_response'),
+
+    url(r'^cart/$', 'new_shopping_cart', name='new_shopping_cart'),
+    url(r'^cart/(?P<id>[0-9]+)/$', 'shopping_cart', name='shopping_cart'),
 
     # Examples:
     # url(r'^$', 'mcash_store.views.home', name='home'),

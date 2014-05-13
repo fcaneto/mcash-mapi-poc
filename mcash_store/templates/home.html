@@ -1,50 +1,113 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
-  <title>The Random Shop</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
+  <title>Donate to UNICEF with mCASH</title>
+
+  <!-- Bootstrap -->
   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 
-</head>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+  <script src="//davidshimjs.github.com/qrcodejs/qrcode.min.js"></script>
 
+</head>
 <body>
 
-<div>
-  <h1>Random Shop</h1>
-
-  <div>
-    <p>We deliver random (sometimes useless) things to your door, in 24 hours.</p>
-    <p>You never know what you are going to get.</p>
-
-    <p>Only 50 NOK each.</p>
-
-    <h2>Pay with MCash</h2>
-
-    -- qr-code goes here --
-
+<div class="container">
+  <div class="header">
+    <h3>UNICEF donations with mCASH</h3>
   </div>
 
-  <div>
-    <h2>Cool! Waiting for your payment...</h2>
+  <div id="qr-code" {% if cart.status != 0 %}style="display: none"{% endif %}>
+    <h4>Scan the qr-code to donate {{ cart.amount }} NOK:</h4>
+
+    <div id="mCASHCheckout" style="margin-bottom: 10px"
+         data-mcash-img-qr-url="http://mca.sh/s/{{ mcash_shortlink_id }}/{{ cart.id }}"></div>
   </div>
 
-  <div>
-    <h2>Thanks!</h2>
+  <p>Order #{{ cart.id }}</p>
 
-    -- address should show here --
+  <div id="authorization-alert" class="alert alert-warning"
+       style="margin-bottom: 10px{% if cart.status != 1 %};display: none{% endif %}">
+    Please, authorize the payment in the mCASH app.
+  </div>
+  <div id="thanks-alert" class="alert alert-success"
+       style="margin-bottom: 10px{% if cart.status != 2 %};display: none{% endif %}">
+    Thanks a lot for your donation!
+  </div>
 
-    </div>
+  <button id="retry-donation-btn" type="button" class="btn btn-success"
+          style="margin-bottom: 10px{% if cart.status == 0 %};display: none{% endif %}">Donate again!
+  </button>
+
+  <div class="footer">
+    <p>&copy; mCASH - MAPI Proof of Concept app - 2014</p>
+  </div>
+
 </div>
-
-
-<script src="//mcashtestbed.appspot.com/sdk/v1/shortlink.js"/>
-<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<!-- /container -->
 
 <script>
+  function pollShoppingCart() {
+    $.ajax({
+      url: "/cart/{{ cart.id }}",
+      success: function (data) {
+        switch (data.status) {
+          case 0: // cart is open
+            break;
+          case 1: // cart is waiting payment authorization
+            console.log('auth');
+            $("#qr-code").hide();
+            $('#authorization-alert').show();
+            $('#retry-donation-btn').show();
+            $('#retry-donation-btn').prop('disabled', false);
+            break;
+          case 2: // cart is paid
+            console.log('paid');
+            $('#authorization-alert').hide();
+            $('#thanks-alert').show();
+            $('#retry-donation-btn').show();
+            $('#retry-donation-btn').prop('disabled', false);
+            break;
+        }
+      },
+      error: function (err) {
+        console.log(err);
+      },
+      type: "GET",
+      dataType: "json",
+      timeout: 1000
+    }).
+      always(function () {
+        setTimeout(pollShoppingCart, 2000);
+      });
+  }
+
+  $('#retry-donation-btn').click(function () {
+    var btn = $(this);
+    btn.button('loading')
+    $.ajax({
+      url: "/cart/",
+      type: "POST"
+    }).
+      always(function () {
+        location.reload();
+      });
+  });
+
   $(document).ready(function () {
-    mCASH.displayQRorButton();
+    new QRCode(document.getElementById("mCASHCheckout"), "http://mca.sh/s/{{ mcash_shortlink_id }}/?cartId={{ cart.id }}");
+    pollShoppingCart();
   });
 </script>
+
+</body>
+</html>
+
 
 </body>
 
