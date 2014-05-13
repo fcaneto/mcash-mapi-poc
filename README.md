@@ -1,6 +1,6 @@
 ## mCASH MAPI PoC app
 
-This is a simple app to evaluate mCASH usage within an e-commerce web app.
+This is a simple PoC that evaluates mCASH usage within an e-commerce web app.
 
 #### About this version:
 
