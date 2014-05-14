@@ -18,7 +18,7 @@ APP_DIR = os.path.abspath(os.path.dirname(__file__))
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
-    # ('Your Name', 'your_email@example.com'),
+    ('Fernando', 'fernando.neto@gmail.com'),
 )
 
 MANAGERS = ADMINS
