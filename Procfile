@@ -1,1 +1,1 @@
-web: gunicorn hellodjango.wsgi
+web: gunicorn mcash_store.wsgi
