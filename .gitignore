@@ -2,6 +2,7 @@ venv/
 .env
 .idea/
 *.db
+heroku_config.sh
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

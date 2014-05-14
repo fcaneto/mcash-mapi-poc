@@ -38,6 +38,7 @@ $ ./migrate.sh
 * Tunnel ngrok to localhost:8000.
 * Create a file named .env in the project root with the following content:
 ```
+DATABASE_URL=sqlite:///mcash_store/mcash_store.db
 MCASH_MERCHANT_ID=iw1yhe
 MCASH_USER=thedude
 MCASH_USER_SECRET=supersecret

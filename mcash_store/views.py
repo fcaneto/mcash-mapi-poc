@@ -40,7 +40,6 @@ def home(request):
 @csrf_exempt
 def do_payment_request(request):
     request_body = json.loads(request.body)
-    print request_body
 
     # argstring is the id of the cart being paid
     cart_id = request_body['object']['argstring']
@@ -93,7 +92,6 @@ def payment_response(request):
 @csrf_exempt
 def payment_capture_response(request):
     request_body = json.loads(request.body)
-    print request_body
 
     mcash_transaction_id = request_body['object']['tid']
     transaction = MCashTransaction.objects.get(mcash_id = mcash_transaction_id)
